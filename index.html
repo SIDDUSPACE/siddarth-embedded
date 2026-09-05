@@ -1567,6 +1567,37 @@ body.connect-locked nav{
   }
 }
 
+
+/* =========================================================
+   CLEAN SECTION OUTLINES
+   Removes only the outer page/section divider lines.
+   Cards, buttons, inputs and other component borders remain.
+   ========================================================= */
+.page{
+  border:none !important;
+}
+
+section{
+  border-top:none !important;
+}
+
+
+/* =========================================================
+   HERO FABRIC / GRID BREATHING EFFECT
+   Keeps the existing grid exactly the same, but lets it
+   softly appear and disappear in a continuous motion.
+   ========================================================= */
+.hero-grid{
+  opacity:.5;
+  animation:heroGridBreath 8s ease-in-out infinite;
+  will-change:opacity;
+}
+
+@keyframes heroGridBreath{
+  0%,100%{opacity:.14}
+  50%{opacity:.55}
+}
+
 </style>
 <!--
   BRAND GIF:
@@ -1582,7 +1613,7 @@ body.connect-locked nav{
   <a class="brand" href="#top" aria-label="Back to top">
     <img class="brand-gif" src="logo.png" alt="Siddarth logo"
          onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
-    <span class="brand-fallback"></span>
+    <span class="brand-fallback">S</span>
   </a>
   <div class="nav-center">
     <a class="nav-pill active" href="#work">WORK</a>
