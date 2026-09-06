@@ -654,7 +654,35 @@ body.connect-locked{
 .role h3{font-size:26px}.role p{font-size:13px}
 
 /* footer */
-footer{padding:90px 0 110px;background:#111;color:#fff;position:relative;overflow:hidden}
+footer{
+  padding:90px 0 110px;
+  background:#111;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+/* FOOTER GLOBAL GRID
+   Wireframe globe positioned behind the right side of the footer */
+footer::before{
+  content:"";
+  position:absolute;
+  width:620px;
+  height:620px;
+  right:-40px;
+  top:50%;
+  transform:translateY(-50%);
+
+  opacity:.20;
+  pointer-events:none;
+  z-index:0;
+
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 620 620'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1'%3E%3Cellipse cx='310' cy='310' rx='302' ry='302'/%3E%3Cellipse cx='310' cy='310' rx='302' ry='245'/%3E%3Cellipse cx='310' cy='310' rx='302' ry='185'/%3E%3Cellipse cx='310' cy='310' rx='302' ry='120'/%3E%3Cellipse cx='310' cy='310' rx='302' ry='58'/%3E%3Cellipse cx='310' cy='310' rx='245' ry='302'/%3E%3Cellipse cx='310' cy='310' rx='185' ry='302'/%3E%3Cellipse cx='310' cy='310' rx='120' ry='302'/%3E%3Cellipse cx='310' cy='310' rx='58' ry='302'/%3E%3Cpath d='M310 8v604M8 310h604'/%3E%3C/g%3E%3C/svg%3E");
+
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+}
 footer p{color:#a9b0ad}
 .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;position:relative;z-index:2}
 
@@ -672,7 +700,26 @@ footer p{color:#a9b0ad}
   background:#fff;color:#111;transform:translateY(-4px);
   box-shadow:0 12px 28px rgba(255,255,255,.08);
 }
-.footer-bottom{display:flex;justify-content:space-between;border-top:1px solid #303431;margin-top:70px;padding-top:20px;font:10px "DM Mono";color:#8d9691}
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  border-top:1px solid #303431;
+  margin-top:70px;
+  padding-top:20px;
+  font:10px "DM Mono";
+  color:#8d9691;
+  position:relative;
+  z-index:2;
+}
+@media(max-width:700px){
+  footer::before{
+    width:430px;
+    height:430px;
+    right:-170px;
+    top:58%;
+    opacity:.13;
+  }
+}
 
 /* reveal system */
 .reveal{opacity:0;transform:translateY(55px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
