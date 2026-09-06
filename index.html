@@ -1691,6 +1691,933 @@ section{
   50%{opacity:.55}
 }
 
+
+
+/* =========================================================
+   PREMIUM HERO HARDWARE SYSTEM
+   ========================================================= */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+}
+
+
+/* =========================================================
+   HARDWARE LAYER
+   ========================================================= */
+
+.hero-hardware{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+}
+
+
+/* =========================================================
+   HARDWARE UNIT
+   ========================================================= */
+
+.hardware-unit{
+  position:absolute;
+  z-index:2;
+}
+
+
+/* =========================================================
+   HARDWARE IMAGE
+   ========================================================= */
+
+.hardware-image{
+  position:relative;
+  z-index:4;
+  animation:hardwareFloat 6s ease-in-out infinite;
+}
+
+.hardware-image img{
+  display:block;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+
+  filter:
+    drop-shadow(0 18px 15px rgba(0,0,0,.12))
+    drop-shadow(0 35px 30px rgba(0,0,0,.07));
+}
+
+
+/* =========================================================
+   ESP32
+   ========================================================= */
+
+.esp32-unit{
+  left:7%;
+  top:20%;
+
+  width:440px;
+  height:330px;
+
+  transform:rotate(-3deg);
+}
+
+.esp32-unit .hardware-image{
+  position:absolute;
+
+  left:45px;
+  top:35px;
+}
+
+.esp32-unit img{
+  width:300px;
+  transform:rotate(-13deg);
+}
+
+.esp32-unit .hardware-info{
+  position:absolute;
+
+  left:0;
+  top:65px;
+}
+
+
+/* =========================================================
+   STM32
+   ========================================================= */
+
+.stm32-unit{
+  right:7%;
+  top:14%;
+
+  width:380px;
+  height:300px;
+
+  transform:rotate(3deg);
+}
+
+.stm32-unit .hardware-image{
+  position:absolute;
+
+  right:20px;
+  top:35px;
+}
+
+.stm32-unit img{
+  width:200px;
+  transform:rotate(15deg);
+}
+
+.stm32-unit .hardware-info{
+  position:absolute;
+
+  right:0;
+  top:0;
+}
+
+
+/* =========================================================
+   MPU6050
+   ========================================================= */
+
+.mpu-unit{
+  right:9%;
+  top:59%;
+
+  width:330px;
+  height:230px;
+}
+
+.mpu-unit .hardware-image{
+  position:absolute;
+
+  right:10px;
+  top:35px;
+}
+
+.mpu-unit img{
+  width:135px;
+  transform:rotate(10deg);
+}
+
+.mpu-unit .hardware-info{
+  position:absolute;
+
+  right:155px;
+  top:0;
+}
+
+
+/* =========================================================
+   HARDWARE LABELS
+   ========================================================= */
+
+.hardware-info{
+  z-index:8;
+
+  font-family:"DM Mono",monospace;
+
+  color:#7a8184;
+
+  font-size:9px;
+
+  line-height:1.55;
+
+  letter-spacing:.08em;
+
+  white-space:nowrap;
+
+  text-align:left;
+}
+
+.hardware-title{
+  margin-bottom:5px;
+
+  color:#596267;
+
+  font-size:12px;
+
+  font-weight:600;
+
+  letter-spacing:.10em;
+}
+
+.hardware-info .dash{
+  margin-top:3px;
+
+  color:#8b9193;
+}
+
+
+/* =========================================================
+   ORBIT SYSTEM
+   ========================================================= */
+
+.orbit{
+  position:absolute;
+
+  border:1px solid rgba(120,128,130,.18);
+
+  border-radius:50%;
+
+  z-index:1;
+
+  pointer-events:none;
+}
+
+
+/* ESP32 orbit */
+
+.orbit-esp32{
+  width:390px;
+  height:190px;
+
+  left:-10px;
+  top:75px;
+
+  transform:rotate(-17deg);
+}
+
+
+/* STM32 orbit */
+
+.orbit-stm32{
+  width:390px;
+  height:155px;
+
+  right:-35px;
+  top:30px;
+
+  transform:rotate(25deg);
+}
+
+
+/* MPU6050 orbit */
+
+.orbit-mpu{
+  width:300px;
+  height:125px;
+
+  right:-25px;
+  top:15px;
+
+  transform:rotate(-13deg);
+}
+
+
+/* =========================================================
+   ORBIT DOTS
+   ========================================================= */
+
+.orbit-dot{
+  position:absolute;
+
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:#7c8588;
+
+  z-index:6;
+}
+
+
+/* ESP32 */
+
+.dot-esp32-1{
+  left:405px;
+  top:160px;
+}
+
+.dot-esp32-2{
+  left:65px;
+  top:300px;
+}
+
+
+/* STM32 */
+
+.dot-stm32-1{
+  left:10px;
+  top:100px;
+}
+
+.dot-stm32-2{
+  right:0;
+  top:235px;
+}
+
+
+/* MPU6050 */
+
+.dot-mpu-1{
+  left:20px;
+  top:120px;
+}
+
+.dot-mpu-2{
+  right:5px;
+  top:190px;
+}
+
+
+/* =========================================================
+   LEADER LINES
+   ========================================================= */
+
+.leader-line{
+  position:absolute;
+
+  height:1px;
+
+  background:rgba(100,108,110,.38);
+
+  transform-origin:left center;
+
+  z-index:3;
+}
+
+.leader-line::before{
+  content:"";
+
+  position:absolute;
+
+  width:5px;
+  height:5px;
+
+  border:1px solid #899093;
+
+  background:#f7f7f5;
+
+  border-radius:50%;
+
+  top:-2px;
+  left:0;
+}
+
+
+/* ESP32 */
+
+.esp32-line{
+  width:120px;
+
+  left:90px;
+  top:75px;
+
+  transform:rotate(42deg);
+}
+
+
+/* STM32 */
+
+.stm32-line{
+  width:100px;
+
+  right:115px;
+  top:35px;
+
+  transform:rotate(-42deg);
+
+  transform-origin:right center;
+}
+
+
+/* MPU6050 */
+
+.mpu-line{
+  width:80px;
+
+  right:115px;
+  top:40px;
+
+  transform:rotate(-35deg);
+
+  transform-origin:right center;
+}
+
+
+/* =========================================================
+   FLOATING PARTICLES
+   ========================================================= */
+
+.tech-particle{
+  position:absolute;
+
+  width:14px;
+  height:14px;
+
+  background:#e1e4e3;
+
+  border:1px solid #d1d5d4;
+
+  transform:rotate(35deg);
+
+  opacity:.8;
+
+  z-index:1;
+
+  animation:particleFloat 8s ease-in-out infinite;
+}
+
+
+/* Orange particle */
+
+.particle-1{
+  width:15px;
+  height:15px;
+
+  left:29%;
+  top:42%;
+
+  background:#f2762b;
+
+  border-color:#f2762b;
+
+  opacity:.9;
+
+  animation-delay:-2s;
+}
+
+
+/* Top left */
+
+.particle-2{
+  left:28%;
+  top:13%;
+
+  width:19px;
+  height:19px;
+
+  animation-delay:-4s;
+}
+
+
+/* Top right */
+
+.particle-3{
+  right:27%;
+  top:12%;
+
+  width:22px;
+  height:22px;
+
+  opacity:.6;
+
+  filter:blur(2px);
+
+  animation-delay:-1s;
+}
+
+
+/* Bottom left */
+
+.particle-4{
+  left:6%;
+  bottom:18%;
+
+  width:23px;
+  height:23px;
+
+  opacity:.65;
+
+  filter:blur(1px);
+
+  animation-delay:-5s;
+}
+
+
+/* Bottom right */
+
+.particle-5{
+  right:21%;
+  bottom:12%;
+
+  width:28px;
+  height:28px;
+
+  opacity:.55;
+
+  filter:blur(3px);
+
+  animation-delay:-3s;
+}
+
+
+/* =========================================================
+   FLOATING ANIMATIONS
+   ========================================================= */
+
+@keyframes hardwareFloat{
+
+  0%,
+  100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-14px);
+  }
+
+}
+
+
+@keyframes particleFloat{
+
+  0%,
+  100%{
+    transform:translateY(0) rotate(35deg);
+  }
+
+  50%{
+    transform:translateY(-18px) rotate(55deg);
+  }
+
+}
+
+
+/* =========================================================
+   CENTER HERO CONTENT
+   ========================================================= */
+
+.hero-copy{
+  position:relative;
+  z-index:10;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width:1400px){
+
+  .esp32-unit{
+    left:6%;
+    top:19%;
+  }
+
+  .stm32-unit{
+    right:6%;
+    top:13%;
+  }
+
+  .mpu-unit{
+    right:8%;
+    top:59%;
+  }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+   ========================================================= */
+
+@media (max-width:1200px){
+
+  .esp32-unit{
+    left:0;
+
+    transform:scale(.82) rotate(-3deg);
+    transform-origin:left center;
+  }
+
+  .stm32-unit{
+    right:0;
+
+    transform:scale(.82) rotate(3deg);
+    transform-origin:right center;
+  }
+
+  .mpu-unit{
+    right:0;
+
+    transform:scale(.82);
+    transform-origin:right center;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width:900px){
+
+  .hardware-info{
+    display:none;
+  }
+
+  .esp32-unit{
+    left:-55px;
+    top:23%;
+
+    transform:scale(.58) rotate(-7deg);
+    transform-origin:left top;
+  }
+
+  .stm32-unit{
+    right:-55px;
+    top:19%;
+
+    transform:scale(.56) rotate(7deg);
+    transform-origin:right top;
+  }
+
+  .mpu-unit{
+    right:-25px;
+    top:67%;
+
+    transform:scale(.55);
+    transform-origin:right top;
+  }
+
+  .orbit{
+    opacity:.5;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width:700px){
+
+  .hero{
+    min-height:720px;
+  }
+
+  .hero-hardware{
+    opacity:.55;
+  }
+
+
+  /* -------------------------
+     ESP32
+     ------------------------- */
+
+  .esp32-unit{
+
+    left:-85px;
+    top:16%;
+
+    width:300px;
+    height:230px;
+
+    transform:scale(.42) rotate(-8deg);
+
+    transform-origin:left top;
+  }
+
+
+  /* -------------------------
+     STM32
+     ------------------------- */
+
+  .stm32-unit{
+
+    right:-95px;
+    top:17%;
+
+    width:280px;
+    height:220px;
+
+    transform:scale(.40) rotate(8deg);
+
+    transform-origin:right top;
+  }
+
+
+  /* -------------------------
+     MPU6050
+     ------------------------- */
+
+  .mpu-unit{
+
+    right:-45px;
+    top:69%;
+
+    width:240px;
+    height:180px;
+
+    transform:scale(.40);
+
+    transform-origin:right top;
+  }
+
+
+  /* Hide desktop connections */
+
+  .hardware-info{
+    display:none;
+  }
+
+  .orbit{
+    display:none;
+  }
+
+  .leader-line{
+    display:none;
+  }
+
+  .orbit-dot{
+    display:none;
+  }
+
+
+  /* Make particles subtle */
+
+  .tech-particle{
+    opacity:.25;
+
+    transform:scale(.7) rotate(35deg);
+  }
+
+
+  /* Hero text */
+
+  .hero-copy{
+    width:100%;
+
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  .hero-copy .eyebrow{
+    font-size:10px;
+
+    letter-spacing:.12em;
+  }
+
+  .hero-copy h1{
+    font-size:clamp(54px,16vw,82px);
+
+    line-height:.95;
+  }
+
+  .hero-copy .location{
+    font-size:10px;
+
+    line-height:1.7;
+  }
+
+  .hero-copy .sub{
+    max-width:500px;
+
+    margin-left:auto;
+    margin-right:auto;
+
+    font-size:13px;
+
+    line-height:1.7;
+  }
+
+  .hero-actions{
+    display:flex;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+    gap:10px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width:480px){
+
+  .hero{
+    min-height:700px;
+  }
+
+  .hero-hardware{
+    opacity:.40;
+  }
+
+
+  /* ESP32 */
+
+  .esp32-unit{
+
+    left:-100px;
+    top:15%;
+
+    transform:scale(.35) rotate(-8deg);
+
+    transform-origin:left top;
+  }
+
+
+  /* STM32 */
+
+  .stm32-unit{
+
+    right:-105px;
+    top:17%;
+
+    transform:scale(.34) rotate(8deg);
+
+    transform-origin:right top;
+  }
+
+
+  /* MPU6050 */
+
+  .mpu-unit{
+
+    right:-55px;
+    top:71%;
+
+    transform:scale(.35);
+
+    transform-origin:right top;
+  }
+
+
+  /* Reduce visual noise */
+
+  .particle-2,
+  .particle-3,
+  .particle-4,
+  .particle-5{
+    display:none;
+  }
+
+
+  .particle-1{
+    left:12%;
+    top:42%;
+
+    width:10px;
+    height:10px;
+  }
+
+
+  /* Smaller title */
+
+  .hero-copy h1{
+    font-size:clamp(48px,15vw,68px);
+
+    line-height:.95;
+  }
+
+
+  .hero-copy .location{
+    font-size:9px;
+  }
+
+
+  .hero-copy .sub{
+    font-size:12px;
+
+    line-height:1.7;
+  }
+
+
+  .hero-actions{
+    gap:8px;
+  }
+
+
+  .hero-actions .btn{
+    font-size:12px;
+
+    padding:12px 17px;
+  }
+
+}
+
+
+/* =========================================================
+   EXTRA SMALL PHONES
+   ========================================================= */
+
+@media (max-width:380px){
+
+  .hero{
+    min-height:680px;
+  }
+
+  .esp32-unit{
+    left:-115px;
+    top:15%;
+
+    transform:scale(.31) rotate(-8deg);
+  }
+
+  .stm32-unit{
+    right:-120px;
+    top:17%;
+
+    transform:scale(.30) rotate(8deg);
+  }
+
+  .mpu-unit{
+    right:-65px;
+    top:72%;
+
+    transform:scale(.31);
+  }
+
+  .hero-copy h1{
+    font-size:46px;
+  }
+
+  .hero-copy .sub{
+    font-size:11px;
+  }
+
+}
+
+
 </style>
 <!--
   BRAND GIF:
@@ -1719,19 +2646,170 @@ section{
 </nav>
 
 <header class="hero" id="top">
+
+  <!-- BACKGROUND GRID -->
   <div class="hero-grid"></div>
-  <div class="floating f1"></div><div class="floating f2"></div><div class="floating f3"></div>
-  <div class="floating f4"></div><div class="floating f5"></div>
-  <div class="hero-copy reveal scale-in">
-    <div class="eyebrow">EMBEDDED SYSTEMS / FIRMWARE</div>
-    <h1><span>Hi, I'm</span><span>Siddarth.<i style="display:inline !important; color:#f2762b !important; font-style:normal;">S</i></span></h1>
-    <div class="location">⌖ 📍Chennai, <b>INDIA</b> · BUILDING AT THE <b>HARDWARE/SOFTWARE</b> BOUNDARY</div>
-    <p class="sub">I build embedded systems that are measurable, debuggable and designed to behave reliably — from bare-metal firmware to interfaces, buses and hardware bring-up.</p>
-    <div class="hero-actions">
-      <a class="btn" href="#work">View selected work ↗</a>
-      <a class="btn btn-resume" href="Siddarth_S_Embedded_Firmware_Fresher_Resume.pdf" target="_blank" rel="noopener noreferrer">View resume ↗</a>
+
+  <!-- =====================================================
+       HERO HARDWARE
+       ===================================================== -->
+  <div class="hero-hardware">
+
+    <!-- ================= ESP32 ================= -->
+    <div class="hardware-unit esp32-unit">
+
+      <div class="orbit orbit-esp32"></div>
+
+      <div class="orbit-dot dot-esp32-1"></div>
+      <div class="orbit-dot dot-esp32-2"></div>
+
+      <div class="hardware-image">
+        <img
+          src="esp32.png"
+          alt="ESP32 development board"
+        >
+      </div>
+
+      <div class="hardware-info esp32-info">
+        <div class="hardware-title">ESP32</div>
+        <div>CONNECT</div>
+        <div>SENSE</div>
+        <div>BUILD</div>
+        <div class="dash">—</div>
+      </div>
+
+      <div class="leader-line esp32-line"></div>
+
     </div>
+
+
+    <!-- ================= STM32 ================= -->
+    <div class="hardware-unit stm32-unit">
+
+      <div class="orbit orbit-stm32"></div>
+
+      <div class="orbit-dot dot-stm32-1"></div>
+      <div class="orbit-dot dot-stm32-2"></div>
+
+      <div class="hardware-image">
+        <img
+          src="stm32.png"
+          alt="STM32 microcontroller"
+        >
+      </div>
+
+      <div class="hardware-info stm32-info">
+        <div class="hardware-title">STM32</div>
+        <div>CONTROL</div>
+        <div>INTERFACE</div>
+        <div>OPTIMIZE</div>
+        <div class="dash">—</div>
+      </div>
+
+      <div class="leader-line stm32-line"></div>
+
+    </div>
+
+
+    <!-- ================= MPU6050 ================= -->
+    <div class="hardware-unit mpu-unit">
+
+      <div class="orbit orbit-mpu"></div>
+
+      <div class="orbit-dot dot-mpu-1"></div>
+      <div class="orbit-dot dot-mpu-2"></div>
+
+      <div class="hardware-image">
+        <img
+          src="mpu6050.png"
+          alt="MPU6050 sensor board"
+        >
+      </div>
+
+      <div class="hardware-info mpu-info">
+        <div class="hardware-title">MPU6050</div>
+        <div>MEASURE</div>
+        <div>ANALYZE</div>
+        <div>IMPROVE</div>
+        <div class="dash">—</div>
+      </div>
+
+      <div class="leader-line mpu-line"></div>
+
+    </div>
+
+
+    <!-- =================================================
+         FLOATING TECH PARTICLES
+         ================================================= -->
+
+    <div class="tech-particle particle-1"></div>
+    <div class="tech-particle particle-2"></div>
+    <div class="tech-particle particle-3"></div>
+    <div class="tech-particle particle-4"></div>
+    <div class="tech-particle particle-5"></div>
+
   </div>
+
+
+  <!-- =====================================================
+       CENTER HERO CONTENT
+       ===================================================== -->
+
+  <div class="hero-copy reveal scale-in">
+
+    <div class="eyebrow">
+      EMBEDDED SYSTEMS / FIRMWARE
+    </div>
+
+    <h1>
+      <span>Hi, I'm</span>
+
+      <span>
+        Siddarth.<i
+          style="
+            display:inline !important;
+            color:#f2762b !important;
+            font-style:normal;
+          "
+        >S</i>
+      </span>
+    </h1>
+
+    <div class="location">
+      ⌖ 📍Chennai,
+      <b>INDIA</b>
+      · BUILDING AT THE
+      <b>HARDWARE/SOFTWARE</b>
+      BOUNDARY
+    </div>
+
+    <p class="sub">
+      I build embedded systems that are measurable,
+      debuggable and designed to behave reliably —
+      from bare-metal firmware to interfaces,
+      buses and hardware bring-up.
+    </p>
+
+    <div class="hero-actions">
+
+      <a class="btn" href="#work">
+        View selected work ↗
+      </a>
+
+      <a
+        class="btn btn-resume"
+        href="Siddarth_S_Embedded_Firmware_Fresher_Resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View resume ↗
+      </a>
+
+    </div>
+
+  </div>
+
 </header>
 
 <main>
