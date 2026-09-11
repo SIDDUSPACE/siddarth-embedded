@@ -1,0 +1,2433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Siddarth — Embedded Systems / Firmware Engineer portfolio">
+<title>Siddarth — Embedded Systems / Firmware</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --bg:#f5f5f2;
+  --card:#ffffff;
+  --ink:#0d0d0d;
+  --muted:#687078;
+  --line:#d9dcd8;
+  --soft:#ecefeb;
+  --accent:#b8f36b;
+  --accent2:#c7d7ff;
+  --max:1400px;
+  --ease:cubic-bezier(.2,.75,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:Inter,system-ui,sans-serif;
+  overflow-x:hidden;
+  padding-top:74px;
+}
+.page > main,
+.page > header,
+.page > footer{
+  position:relative;
+  z-index:1;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+::selection{background:#111;color:#fff}
+
+.page{
+  width:min(var(--max),calc(100% - 32px));
+  margin:16px auto;
+  border:1px solid var(--line);
+  border-radius:8px;
+  overflow:visible;
+  background:var(--bg);
+}
+.container{width:min(1270px,calc(100% - 64px));margin:auto}
+.mono,.eyebrow,.tag,.nav-pill{font-family:"DM Mono",monospace}
+.eyebrow{
+  font-size:12px;letter-spacing:.14em;font-weight:500;color:#626a70;
+  text-transform:uppercase;
+}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{letter-spacing:-.055em}
+h1{font-size:clamp(64px,9vw,138px);line-height:.86}
+h2{font-size:clamp(52px,6vw,94px);line-height:.9}
+h3{font-size:clamp(24px,2.1vw,34px);line-height:1}
+p{line-height:1.65;color:var(--muted)}
+
+nav{
+  height:74px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 30px;border-bottom:1px solid var(--line);
+  position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:5000;
+  background:rgba(245,245,242,.94);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+.brand-gif{
+  width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;
+}
+.brand-fallback{
+  display:grid;place-items:center;width:100%;height:100%;
+}
+.brand{
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:#fff;border:1px solid var(--line);font-weight:800;
+  box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+.nav-center{display:flex;gap:3px;background:#ecece9;padding:3px;border-radius:999px}
+.nav-pill{font-size:11px;padding:10px 16px;border-radius:999px;color:#7b7f80}
+.nav-pill.active{background:#fff;color:#111;box-shadow:0 1px 5px rgba(0,0,0,.07)}
+.menu[aria-haspopup="dialog"]{cursor:pointer}
+/* CONNECT BUTTON */
+.menu{
+  width:150px;
+  height:48px;
+  border-radius:14px;
+  background:transparent;
+  border:1.5px solid #ff6b2c;
+  color:#ff6b2c;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:inherit;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.01em;
+  transition:
+    background .25s ease,
+    color .25s ease,
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+.menu:hover{
+  background:#ff6b2c;
+  color:#fff;
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(255,107,44,.18);
+}
+
+.menu:active{
+  transform:translateY(0);
+}
+
+@media(max-width:600px){
+  .menu{
+    width:125px;
+    height:44px;
+    border-radius:13px;
+    font-size:12px;
+  }
+}
+
+/* HERO */
+.hero{
+  min-height:720px;position:relative;display:grid;place-items:center;
+  text-align:center;padding:90px 30px 70px;overflow:hidden;
+}
+.hero-copy{position:relative;z-index:3;max-width:1000px}
+.hero h1 span{display:block}
+.hero h1 > span:first-child{
+    margin-bottom:clamp(12px,1.2vw,20px);
+}
+.hero h1 .s{
+    color:#f2762b;
+}
+.hero .sub{margin:32px auto 0;max-width:630px;font-size:15px}
+.location{margin-top:18px;font:12px "DM Mono";color:#73787b}
+.hero-actions{display:flex;justify-content:center;gap:10px;margin-top:30px;flex-wrap:wrap}
+.btn{
+  border:1px solid #171717;border-radius:999px;padding:13px 19px;
+  background:#111;color:#fff;font-size:12px;font-weight:700;
+  transition:.35s var(--ease)
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(0,0,0,.14)}
+.btn-resume{
+  background:#fff;
+  color:#111;
+  border-color:#bfc4c0;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.7);
+}
+.btn-resume:hover{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+}
+
+.btn.ghost{background:#fff;color:#111;border-color:var(--line)}
+.hero-grid{
+  position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(#dfe2de 1px,transparent 1px),linear-gradient(90deg,#dfe2de 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:linear-gradient(to bottom,transparent 2%,black 25%,black 75%,transparent 100%);
+}
+.floating{
+  position:absolute;border:1px solid #c7cac7;background:#d9dcda;
+  transform:rotate(20deg);animation:float 7s ease-in-out infinite;
+}
+.f1{width:14px;height:14px;left:20%;top:22%;border-radius:3px}
+.f2{width:24px;height:24px;right:22%;top:28%;border-radius:5px;animation-delay:-2s}
+.f3{width:9px;height:9px;right:31%;top:52%;border-radius:2px;animation-delay:-4s}
+.f4{width:16px;height:16px;left:28%;top:58%;border-radius:50%;animation-delay:-1s}
+.f5{width:7px;height:7px;left:13%;top:42%;border-radius:2px;animation-delay:-3s}
+@keyframes float{50%{transform:translateY(-18px) rotate(50deg)}}
+
+/* section */
+section{padding:120px 0;border-top:1px solid var(--line)}
+.section-head{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;margin-bottom:58px}
+.section-head p{font-size:16px;max-width:570px;padding-top:10px}
+
+/* projects */
+.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.project{
+  min-height:520px;border:1px solid var(--line);border-radius:30px;background:#fff;
+  overflow:hidden;position:relative;transition:transform .55s var(--ease),box-shadow .55s var(--ease);
+}
+.project:hover{transform:translateY(-8px);box-shadow:0 25px 60px rgba(0,0,0,.08)}
+.project-visual{height:300px;position:relative;overflow:hidden;background:#edf0ec}
+.project-info{padding:28px 30px 34px}
+.project-info .eyebrow{margin-bottom:18px}
+.project-info p{margin-top:14px}
+.project-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.tag{font-size:10px;border:1px solid var(--line);padding:8px 10px;border-radius:999px}
+.project-link{position:absolute;right:24px;bottom:24px;font-weight:700;font-size:12px}
+
+/* technical SVG visual */
+.scope{position:absolute;inset:0;padding:32px}
+.scope-window{height:100%;border:1px solid #cbd1cc;border-radius:18px;background:#f9faf8;padding:18px;box-shadow:0 18px 40px rgba(0,0,0,.08)}
+.wave{width:100%;height:100%;display:block}
+.board{position:absolute;width:62%;height:70%;left:19%;top:14%;border-radius:18px;background:#1d2420;box-shadow:22px 24px 0 rgba(0,0,0,.07),0 28px 50px rgba(0,0,0,.16);transform:rotate(-4deg)}
+.board:before{content:"STM32";position:absolute;left:25px;top:24px;color:#c8d4cc;font:700 18px "DM Mono"}
+.board:after{content:"●  ●  ●  ●  ●";position:absolute;left:25px;bottom:22px;color:#a7f16a;font-size:15px;letter-spacing:8px}
+.chip{position:absolute;left:35%;top:34%;width:110px;height:90px;background:#111;border:1px solid #555;border-radius:8px;box-shadow:inset 0 0 0 7px #242a27}
+.trace{position:absolute;height:2px;background:#a7f16a;opacity:.8}
+.t1{width:34%;left:12%;top:55%}.t2{width:26%;left:52%;top:28%}.t3{width:22%;left:62%;top:67%}
+.logic{position:absolute;inset:0;padding:38px}
+.logic-box{height:100%;border-radius:18px;background:#111;color:#e7ece8;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.logic-title{font:11px "DM Mono";color:#9ba69f}
+.bits{margin-top:28px;display:flex;align-items:flex-end;height:170px;gap:8px}
+.bit{width:8%;background:#b8f36b;border-radius:3px 3px 0 0;min-height:30px}
+.kicad{position:absolute;inset:0;padding:28px;background:#e8ece8}
+.kicad-grid{position:absolute;inset:0;background-image:radial-gradient(#b7c0b9 1px,transparent 1px);background-size:18px 18px;opacity:.5}
+.trace-line{position:absolute;height:3px;background:#111;transform-origin:left center}
+.tl1{width:60%;left:15%;top:28%;transform:rotate(17deg)}
+.tl2{width:55%;left:20%;top:60%;transform:rotate(-14deg)}
+.tl3{width:35%;left:42%;top:44%;transform:rotate(48deg)}
+.pad{position:absolute;width:18px;height:18px;border-radius:50%;border:2px solid #111;background:#fff}
+
+
+.project-visual > .logic{
+  inset:0;
+  padding:30px;
+}
+.project-visual > .logic .logic-box{
+  height:100%;
+  padding:25px;
+  display:flex;
+  flex-direction:column;
+}
+.project-visual > .logic .bits{
+  height:145px;
+  margin-top:22px;
+  overflow:hidden;
+}
+
+/* hardware evidence */
+.evidence-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.evidence{
+  min-height:390px;background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden;
+  position:relative;transition:.55s var(--ease)
+}
+.evidence:hover{transform:translateY(-7px);box-shadow:0 22px 55px rgba(0,0,0,.08)}
+.evidence-img{height:205px;position:relative;overflow:hidden;background:#edf0ec}
+.evidence-body{padding:24px 28px}
+.evidence-body h3{font-size:23px;letter-spacing:-.035em}
+.evidence-body p{margin-top:11px;font-size:13px}
+.evidence-label{position:absolute;left:18px;top:18px;padding:7px 9px;border-radius:999px;background:#fff;font:10px "DM Mono";z-index:2}
+
+
+/* evidence artwork alignment */
+.evidence-img > .logic{
+  inset:0;
+  padding:26px 28px 20px;
+}
+.evidence-img > .logic .logic-box{
+  height:100%;
+  min-height:0;
+  padding:23px 24px 16px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+.evidence-img > .logic .logic-title{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.evidence-img > .logic .bits{
+  height:92px;
+  margin-top:16px;
+  gap:10px;
+  align-items:flex-end;
+  overflow:hidden;
+  flex:0 0 auto;
+}
+.evidence-img > .logic .bit{
+  width:8%;
+  max-height:92px;
+  min-height:10px;
+}
+.evidence-img > .kicad{
+  padding:0;
+  overflow:hidden;
+}
+.evidence-img > .kicad .trace-line{
+  height:3px;
+}
+.evidence-img > .kicad .pad{
+  width:18px;
+  height:18px;
+}
+.evidence-img > .scope{
+  inset:0;
+  padding:26px 28px 20px;
+}
+.evidence-img > .scope .scope-window{
+  height:100%;
+  min-height:0;
+}
+.evidence-img > .board{
+  max-width:76%;
+  max-height:70%;
+}
+
+
+/* personal timeline */
+.timeline-section{background:var(--paper)}
+.timeline{
+  position:relative;
+  max-width:980px;
+  margin:70px auto 0;
+  padding:8px 0 20px;
+}
+.timeline:before{
+  content:"";
+  position:absolute;
+  left:104px;
+  top:0;
+  bottom:0;
+  width:1px;
+  background:var(--line);
+}
+.timeline-item{
+  position:relative;
+  display:grid;
+  grid-template-columns:74px 60px 1fr;
+  gap:24px;
+  min-height:170px;
+  padding:0 0 54px;
+}
+.timeline-marker{
+  position:relative;
+  grid-column:2;
+  grid-row:1;
+  display:flex;
+  justify-content:center;
+}
+.timeline-marker:before{
+  content:"";
+  position:absolute;
+  top:8px;
+  width:18px;
+  height:18px;
+  border:1px solid #111;
+  border-radius:50%;
+  background:var(--paper);
+  box-shadow:0 0 0 7px var(--paper);
+}
+.timeline-marker span{
+  position:absolute;
+  top:14px;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#111;
+}
+.timeline-marker.current:before{
+  background:#111;
+}
+.timeline-marker.current span{background:#fff}
+.timeline-meta{
+  grid-column:1;
+  grid-row:1;
+  padding-top:9px;
+  font:12px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.12em;
+  color:#5d6870;
+  text-align:right;
+}
+.timeline-content{
+  grid-column:3;
+  grid-row:1;
+  padding:0 0 4px;
+}
+.timeline-content h3{
+  margin:0 0 10px;
+  font-size:clamp(25px,3vw,40px);
+  line-height:1.05;
+  letter-spacing:-.04em;
+}
+.timeline-content p{
+  max-width:650px;
+  margin:0;
+  color:#5e6d77;
+  font-size:16px;
+  line-height:1.65;
+}
+.timeline-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:18px;
+}
+.timeline-tags span{
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:7px 10px;
+  font:11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  color:#68747b;
+  background:rgba(255,255,255,.38);
+}
+
+/* Connect-to-me modal */
+.connect-modal{
+  position:fixed;
+  inset:0;
+  z-index:3000;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  visibility:hidden;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease, visibility .25s ease;
+}
+.connect-modal.is-open{
+  visibility:visible;
+  opacity:1;
+  pointer-events:auto;
+}
+.connect-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(10,11,10,.56);
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+}
+.connect-panel{
+  position:relative;
+  width:min(500px,calc(100vw - 32px));
+  max-height:calc(100vh - 48px);
+  overflow:auto;
+  padding:30px;
+  background:#f5f5f2;
+  border:1px solid rgba(20,22,20,.20);
+  border-radius:24px;
+  box-shadow:0 30px 90px rgba(0,0,0,.28);
+  transform:translateY(18px) scale(.97);
+  transition:transform .3s cubic-bezier(.2,.8,.2,1);
+}
+.connect-modal.is-open .connect-panel{
+  transform:translateY(0) scale(1);
+}
+.connect-close{
+  position:absolute;
+  top:18px;
+  right:18px;
+  width:42px;
+  height:42px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:transparent;
+  color:var(--ink);
+  font-size:25px;
+  line-height:1;
+  cursor:pointer;
+  transition:.2s ease;
+}
+.connect-close:hover{
+  background:#111;
+  color:#fff;
+  transform:rotate(90deg);
+}
+.connect-kicker{
+  margin-bottom:14px;
+  font:12px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.18em;
+  color:#6f8799;
+}
+.connect-panel h2{
+  margin:0;
+  font-size:clamp(34px,5vw,50px);
+  line-height:.95;
+  letter-spacing:-.05em;
+  max-width:470px;
+}
+.connect-intro{
+  margin:16px 0 24px;
+  max-width:590px;
+  color:#50677a;
+  font-size:16px;
+  line-height:1.65;
+}
+.connect-form{
+  display:grid;
+  gap:14px;
+}
+.connect-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.connect-form label{
+  display:grid;
+  gap:8px;
+}
+.connect-form label span{
+  font:11px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:#667a88;
+}
+.connect-form input,
+.connect-form textarea{
+  width:100%;
+  box-sizing:border-box;
+  border:1px solid #ccd1ce;
+  border-radius:14px;
+  background:#fff;
+  color:#111;
+  padding:14px 15px;
+  font:15px/1.45 inherit;
+  outline:none;
+  resize:vertical;
+  transition:border-color .2s, box-shadow .2s;
+}
+.connect-form input{
+  min-height:50px;
+}
+.connect-form input:focus,
+.connect-form textarea:focus{
+  border-color:#111;
+  box-shadow:0 0 0 3px rgba(17,17,17,.07);
+}
+.connect-form-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-top:2px;
+}
+.connect-note{
+  max-width:280px;
+  color:#71808a;
+  font-size:12px;
+  line-height:1.45;
+}
+.connect-submit{
+  border:1px solid #111;
+  border-radius:999px;
+  background:#111;
+  color:#fff;
+  padding:15px 22px;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform .2s, box-shadow .2s;
+}
+.connect-submit:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 25px rgba(0,0,0,.16);
+}
+.connect-submit:disabled{
+  opacity:.6;
+  cursor:wait;
+  transform:none;
+}
+.connect-honeypot{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}\n.connect-status{
+  min-height:20px;
+  font-size:13px;
+  color:#607481;
+}
+body.connect-locked{
+  overflow:hidden;
+}
+@media(max-width:640px){
+  .connect-modal{padding:12px}
+  .connect-panel{
+    padding:32px 22px 24px;
+    border-radius:22px;
+  }
+  .connect-grid{
+    grid-template-columns:1fr;
+  }
+  .connect-form-bottom{
+    align-items:stretch;
+    flex-direction:column;
+  }
+  .connect-note{max-width:none}
+  .connect-submit{width:100%}
+}
+
+@media(max-width:720px){
+  .timeline{margin-top:48px}
+  .timeline:before{left:14px}
+  .timeline-item{
+    grid-template-columns:36px 1fr;
+    gap:18px;
+    min-height:0;
+    padding-bottom:42px;
+  }
+  .timeline-marker{
+    grid-column:1;
+  }
+  .timeline-meta{
+    grid-column:2;
+    grid-row:1;
+    text-align:left;
+    padding-top:0;
+    margin-bottom:10px;
+  }
+  .timeline-content{
+    grid-column:2;
+    grid-row:1;
+    padding-top:25px;
+  }
+  .timeline-marker:before{
+    left:5px;
+  }
+  .timeline-marker span{
+    left:11px;
+  }
+}
+
+/* stack */
+.stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.stack-card{
+  background:#fff;border:1px solid var(--line);border-radius:28px;padding:28px;
+  min-height:240px;position:relative;overflow:hidden
+}
+.stack-card h3{font-size:23px;letter-spacing:-.035em}
+.icon-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.icon3d{
+  width:62px;height:62px;border-radius:16px;border:1px solid #d8dcd8;
+  background:linear-gradient(145deg,#fff,#e8ebe7);
+  display:grid;place-items:center;position:relative;
+  box-shadow:8px 9px 0 #dfe3df,0 15px 24px rgba(0,0,0,.07);
+  transform:translateZ(0) rotateX(0) rotateY(0);
+  transition:.45s var(--ease)
+}
+.icon3d:hover{transform:translateY(-8px) rotateX(8deg) rotateY(-8deg);box-shadow:12px 15px 0 #dfe3df,0 22px 28px rgba(0,0,0,.1)}
+.icon3d strong{font:700 15px "DM Mono"}
+.icon3d small{position:absolute;bottom:5px;font:8px "DM Mono";color:#737b77}
+.stack-note{margin-top:25px;font-size:12px}
+
+/* notes */
+.notes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.note{
+  background:#fff;border:1px solid var(--line);border-radius:28px;padding:30px;min-height:300px;
+  display:flex;flex-direction:column;justify-content:space-between;transition:.45s var(--ease)
+}
+.note:hover{transform:translateY(-6px)}
+.note h3{font-size:27px;margin-top:35px}
+.note p{font-size:13px;margin-top:13px}
+.note a{font-size:12px;font-weight:700;margin-top:30px}
+
+/* timeline */
+.timeline{border-top:1px solid var(--line)}
+.role{display:grid;grid-template-columns:150px 1fr 1fr;gap:30px;padding:30px 0;border-bottom:1px solid var(--line)}
+.role h3{font-size:26px}.role p{font-size:13px}
+
+/* footer */
+footer{padding:90px 0 110px;background:#111;color:#fff;position:relative;overflow:hidden}
+footer p{color:#a9b0ad}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;position:relative;z-index:2}
+
+.footer-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.social-icon{
+  width:54px;height:54px;border:1px solid #3d423f;border-radius:50%;
+  display:grid;place-items:center;transition:.35s var(--ease);
+  background:transparent;
+}
+.social-icon svg{
+  width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.social-icon:hover{
+  background:#fff;color:#111;transform:translateY(-4px);
+  box-shadow:0 12px 28px rgba(255,255,255,.08);
+}
+.footer-bottom{display:flex;justify-content:space-between;border-top:1px solid #303431;margin-top:70px;padding-top:20px;font:10px "DM Mono";color:#8d9691}
+
+/* reveal system */
+.reveal{opacity:0;transform:translateY(55px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+.from-left{transform:translateX(-70px)} .from-right{transform:translateX(70px)}
+.scale-in{transform:scale(.92)} .rotate-in{transform:translateY(45px) rotate(2deg)}
+.visible.from-left,.visible.from-right,.visible.scale-in,.visible.rotate-in{transform:none}
+.delay-1{transition-delay:.08s}.delay-2{transition-delay:.16s}.delay-3{transition-delay:.24s}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  #sectionRail{transition:none!important}
+}
+
+/* SECTION PROGRESS RAIL
+   A deliberately quiet replacement for the old circular volume meter.
+   It occupies the same lower-right zone, but now communicates page position. */
+#sectionRail{
+  position:fixed;
+  right:27px;
+  bottom:26px;
+  width:44px;
+  height:230px;
+  z-index:100;
+  pointer-events:none;
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity .28s var(--ease),transform .28s var(--ease);
+}
+#sectionRail.scrolling{
+  opacity:1;
+  transform:none;
+}
+.rail-track{
+  position:absolute;
+  right:19px;
+  top:0;
+  bottom:0;
+  width:1px;
+  background:rgba(15,15,15,.18);
+}
+.rail-fill{
+  position:absolute;
+  right:18px;
+  top:0;
+  width:3px;
+  height:0%;
+  border-radius:99px;
+  background:#111;
+  transform-origin:top;
+  transition:height .18s linear;
+}
+.rail-thumb{
+  position:absolute;
+  right:14px;
+  top:0;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#111;
+  box-shadow:0 0 0 5px rgba(255,255,255,.9);
+  transform:translateY(-1px);
+  transition:top .18s linear,box-shadow .2s ease;
+}
+#sectionRail.scrolling .rail-thumb{
+  box-shadow:0 0 0 5px rgba(255,255,255,.92),0 0 0 7px rgba(17,17,17,.07);
+}
+.rail-section{
+  position:absolute;
+  right:31px;
+  top:0;
+  white-space:nowrap;
+  font:10px "DM Mono";
+  color:#626a70;
+  transform:translateY(-5px);
+  transition:top .18s linear;
+}
+.rail-current{color:#111;font-weight:500}
+.rail-slash{margin:0 3px;color:#a4aaa6}
+.rail-direction{
+  position:absolute;
+  right:8px;
+  bottom:-24px;
+  width:22px;
+  height:22px;
+  border:1px solid rgba(15,15,15,.14);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(12px);
+  font:11px "DM Mono";
+  opacity:0;
+  transform:scale(.7);
+  transition:opacity .2s ease,transform .2s ease;
+}
+#sectionRail.scrolling .rail-direction{
+  opacity:1;
+  transform:scale(1);
+}
+#scrollGhosts{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}
+.ghost{
+  position:absolute;width:9px;height:9px;border-radius:2px;background:#111;opacity:0;
+  animation:ghostUp .9s var(--ease) forwards
+}
+@keyframes ghostUp{
+  0%{opacity:0;transform:translateY(18px) scale(.5) rotate(0)}
+  20%{opacity:.28}
+  100%{opacity:0;transform:translateY(-85px) scale(1.4) rotate(100deg)}
+}
+
+
+/* GitHub project cards */
+.project-card{
+  min-height:330px;
+  padding:30px 28px 26px;
+  cursor:default;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s ease;
+}
+.project-card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 22px 55px rgba(15,15,15,.07);
+  border-color:#c9ceca;
+}
+.project-card-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+.repo-mark{
+  display:grid;
+  place-items:center;
+  min-width:34px;
+  height:28px;
+  padding:0 8px;
+  border:1px solid #d7dbd8;
+  border-radius:999px;
+  font:9px "DM Mono";
+  color:#596168;
+  background:#fafbf9;
+}
+.project-card h3{
+  margin-top:36px;
+  max-width:95%;
+}
+.project-card p{
+  max-width:94%;
+}
+.project-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:22px;
+}
+.project-tags span{
+  border:1px solid #dfe2df;
+  border-radius:999px;
+  padding:6px 9px;
+  font:9px "DM Mono";
+  color:#626a70;
+  background:#fbfcfa;
+}
+.project-link{
+  display:inline-flex;
+  align-items:center;
+  margin-top:28px;
+  color:#111;
+  font:11px "DM Mono";
+  font-weight:600;
+  text-decoration:none;
+  border-bottom:1px solid #111;
+  padding-bottom:4px;
+  transition:opacity .2s ease,transform .2s ease;
+}
+.project-link:hover{
+  opacity:.58;
+  transform:translateX(4px);
+}
+.project-profile-link{
+  margin-top:28px;
+  text-align:center;
+}
+.project-profile-link a{
+  display:inline-block;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:13px 18px;
+  font:10px "DM Mono";
+  color:#111;
+  text-decoration:none;
+  transition:.3s ease;
+}
+.project-profile-link a:hover{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+}
+
+/* mobile */
+@media(max-width:900px){
+  .page{width:calc(100% - 14px);margin:7px auto}
+  .container{width:min(100% - 34px,700px)}
+  nav{padding:0 17px}
+  .nav-center{display:none}
+  .hero{min-height:680px}
+  .section-head,.footer-grid{grid-template-columns:1fr;gap:20px}
+  .project-grid,.evidence-grid,.stack-grid,.notes-grid{grid-template-columns:1fr}
+  .project{min-height:470px}
+  .role{grid-template-columns:1fr;gap:10px}
+  section{padding:90px 0}
+}
+@media(max-width:520px){
+  h1{font-size:62px}
+  h2{font-size:52px}
+  nav{padding:0 16px;height:68px}
+  .nav-center{gap:0}
+  .nav-pill{padding:9px 10px;font-size:10px}
+  .hero{padding:70px 18px}
+  .project-visual{height:250px}
+  .evidence-img{height:180px}
+  .evidence-img > .logic{padding:20px 18px 14px}
+  .project-card{min-height:300px;padding:24px 21px 22px}
+  .project-card h3{margin-top:27px}
+  .project-tags{margin-top:17px}
+  .evidence-img > .logic .logic-box{padding:18px}
+  .evidence-img > .logic .bits{height:74px;margin-top:11px}
+  .brand{width:42px;height:42px}
+  #sectionRail{right:10px;bottom:18px;height:190px;width:38px}
+  .rail-track{right:16px}
+  .rail-fill{right:15px}
+  .rail-thumb{right:11px}
+  .rail-section{right:27px}
+  .rail-direction{right:4px}
+  .social-icon{width:50px;height:50px}
+  
+}
+
+@media(max-width:650px){
+  
+}
+
+
+/* =========================================================
+   MOBILE / TABLET HARDENING
+   Keeps every section inside the viewport and prevents
+   typography, grids, SVGs and fixed UI from overlapping.
+   ========================================================= */
+html{
+  overflow-x:hidden;
+}
+body{
+  overflow-x:hidden;
+}
+.page{
+  max-width:100%;
+  overflow:clip;
+}
+img,svg,canvas{
+  max-width:100%;
+}
+button,input,textarea{
+  font:inherit;
+}
+
+/* Tablet */
+@media (max-width:900px){
+  .container{
+    width:calc(100% - 34px);
+    max-width:700px;
+  }
+
+  nav{
+    height:70px;
+    padding:0 17px;
+  }
+  .nav-center{
+    display:none;
+  }
+
+  section{
+    padding:82px 0;
+  }
+
+  .hero{
+    min-height:0;
+    height:auto;
+    padding:92px 20px 82px;
+  }
+  .hero-copy{
+    width:100%;
+    max-width:760px;
+  }
+  .hero h1{
+    font-size:clamp(58px,10vw,92px);
+    line-height:.88;
+    overflow-wrap:normal;
+  }
+  .hero .sub{
+    width:min(100%,640px);
+    font-size:15px;
+    line-height:1.65;
+  }
+  .hero-actions{
+    flex-wrap:wrap;
+  }
+
+  .section-head{
+    grid-template-columns:1fr;
+    gap:18px;
+    margin-bottom:42px;
+  }
+  .section-head p{
+    max-width:680px;
+    padding-top:0;
+  }
+
+  .project-grid,
+  .evidence-grid,
+  .stack-grid,
+  .notes-grid{
+    grid-template-columns:1fr;
+  }
+
+  .project{
+    min-height:0;
+  }
+  .project-visual{
+    height:290px;
+  }
+
+  .evidence-card{
+    min-width:0;
+  }
+
+  .stack-card{
+    min-height:0;
+  }
+
+  /* Timeline becomes a simple two-column mobile timeline. */
+  .timeline{
+    width:100%;
+    margin-top:48px;
+    padding-left:0;
+  }
+  .timeline:before{
+    left:25px;
+  }
+  .timeline-item{
+    grid-template-columns:52px 1fr;
+    gap:18px;
+    min-height:0;
+    padding-bottom:42px;
+  }
+  .timeline-meta{
+    grid-column:2;
+    grid-row:1;
+    padding-top:0;
+  }
+  .timeline-marker{
+    grid-column:1;
+    grid-row:1;
+  }
+  .timeline-content{
+    grid-column:2;
+    grid-row:2;
+    padding-top:12px;
+  }
+  .timeline-marker:before{
+    top:2px;
+  }
+  .timeline-marker span{
+    top:8px;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+
+  /* Progress rail is intentionally smaller on touch screens. */
+  #sectionRail{
+    right:7px;
+    bottom:14px;
+    width:32px;
+    height:150px;
+  }
+  .rail-track{right:14px}
+  .rail-fill{right:13px}
+  .rail-thumb{right:9px}
+  .rail-section{right:23px}
+  .rail-direction{right:1px}
+}
+
+/* Phone */
+@media (max-width:600px){
+  .page{
+    width:calc(100% - 8px);
+    margin:4px auto;
+    border-radius:0;
+  }
+
+  nav{
+    height:66px;
+    padding:0 14px;
+  }
+  .brand{
+    width:40px;
+    height:40px;
+  }
+  .menu{
+    width:125px;
+    height:44px;
+    border-radius:13px;
+    font-size:12px;
+  }
+
+  section{
+    padding:68px 0;
+  }
+  .container{
+    width:calc(100% - 30px);
+  }
+
+  h2{
+    font-size:clamp(42px,12vw,58px);
+    line-height:.92;
+  }
+  h3{
+    font-size:clamp(22px,7vw,30px);
+  }
+
+  /* Hero */
+  .hero{
+    padding:76px 15px 68px;
+  }
+  .hero h1{
+    font-size:clamp(48px,15.5vw,72px);
+    line-height:.86;
+    letter-spacing:-.065em;
+  }
+  .hero .sub{
+    margin-top:24px;
+    max-width:100%;
+    font-size:14px;
+    line-height:1.65;
+  }
+  .location{
+    font-size:10px;
+    line-height:1.6;
+    white-space:normal;
+  }
+  .hero-actions{
+    width:100%;
+    flex-direction:column;
+    align-items:stretch;
+    gap:9px;
+    margin-top:25px;
+  }
+  .hero-actions .btn{
+    width:100%;
+    box-sizing:border-box;
+    text-align:center;
+  }
+
+  /* Section headings */
+  .section-head{
+    margin-bottom:34px;
+  }
+  .section-head p{
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  /* Project / evidence visuals */
+  .project-visual{
+    height:235px;
+  }
+  .project-info{
+    padding:23px 21px 30px;
+  }
+  .project-link{
+    position:static;
+    display:inline-block;
+    margin-top:20px;
+  }
+
+  .evidence-img{
+    height:190px;
+  }
+  .evidence-img > .logic{
+    padding:17px 13px 12px;
+  }
+  .evidence-img > .logic .logic-box{
+    padding:14px;
+  }
+  .evidence-img > .logic .bits{
+    height:64px;
+    margin-top:8px;
+  }
+
+  /* Hardware / SVG art: keep large drawings clipped within cards. */
+  .project-visual,
+  .evidence-img,
+  .stack-card,
+  .project-card{
+    overflow:hidden;
+  }
+
+  /* Stack cards */
+  .stack-card{
+    padding:22px;
+    border-radius:22px;
+  }
+  .icon-row{
+    gap:10px;
+    margin-top:22px;
+  }
+  .icon3d{
+    width:54px;
+    height:54px;
+    box-shadow:6px 7px 0 #dfe3df,0 11px 18px rgba(0,0,0,.07);
+  }
+
+  /* GitHub project cards */
+  .project-card{
+    min-height:0;
+    padding:22px 19px 21px;
+    border-radius:22px;
+  }
+  .project-card-top{
+    gap:12px;
+  }
+  .project-card h3{
+    margin-top:20px;
+    font-size:27px;
+    line-height:1.02;
+  }
+  .project-card p{
+    font-size:14px;
+    line-height:1.6;
+  }
+  .project-tags{
+    margin-top:14px;
+    gap:6px;
+  }
+  .project-tags span{
+    font-size:9px;
+    padding:6px 8px;
+  }
+  .project-profile-link{
+    width:100%;
+    box-sizing:border-box;
+    text-align:center;
+    margin-top:20px;
+  }
+
+  /* Timeline */
+  .timeline{
+    margin-top:40px;
+  }
+  .timeline-item{
+    grid-template-columns:40px minmax(0,1fr);
+    gap:15px;
+    padding-bottom:36px;
+  }
+  .timeline:before{
+    left:19px;
+  }
+  .timeline-meta{
+    font-size:10px;
+    letter-spacing:.08em;
+  }
+  .timeline-marker:before{
+    width:16px;
+    height:16px;
+    top:0;
+  }
+  .timeline-marker span{
+    top:5px;
+    width:6px;
+    height:6px;
+  }
+  .timeline-content{
+    padding-top:10px;
+    min-width:0;
+  }
+  .timeline-content h3{
+    font-size:23px;
+  }
+  .timeline-content p{
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  /* About / footer */
+  .footer-grid{
+    gap:22px;
+  }
+  footer{
+    padding:68px 0 28px;
+  }
+  .socials{
+    flex-wrap:wrap;
+    gap:9px;
+  }
+  .social-icon{
+    width:48px;
+    height:48px;
+  }
+
+  /* Contact popup */
+  .connect-modal{
+    padding:10px;
+    align-items:center;
+  }
+  .connect-panel{
+    width:min(100%,500px);
+    max-height:calc(100dvh - 20px);
+    padding:25px 19px 21px;
+    border-radius:22px;
+  }
+  .connect-close{
+    top:12px;
+    right:12px;
+    width:40px;
+    height:40px;
+  }
+  .connect-kicker{
+    padding-right:48px;
+    font-size:10px;
+    margin-bottom:12px;
+  }
+  .connect-panel h2{
+    font-size:clamp(35px,10.5vw,48px);
+    max-width:390px;
+  }
+  .connect-intro{
+    margin:14px 0 20px;
+    font-size:14px;
+    line-height:1.55;
+  }
+  .connect-grid{
+    grid-template-columns:1fr;
+    gap:13px;
+  }
+  .connect-form{
+    gap:13px;
+  }
+  .connect-form input,
+  .connect-form textarea{
+    font-size:16px; /* prevents iOS Safari zoom */
+    padding:12px 13px;
+    border-radius:12px;
+  }
+  .connect-form textarea{
+    min-height:125px;
+  }
+  .connect-form-bottom{
+    gap:12px;
+  }
+  .connect-submit{
+    width:100%;
+    padding:14px 18px;
+  }
+
+  /* Hide the floating rail while a modal is open so it never sits over it. */
+  body.connect-locked #sectionRail{
+    opacity:0!important;
+  }
+}
+
+@media (max-width:380px){
+  .container{
+    width:calc(100% - 24px);
+  }
+  .hero h1{
+    font-size:46px;
+  }
+  .hero{
+    padding-left:11px;
+    padding-right:11px;
+  }
+  .project-card h3{
+    font-size:24px;
+  }
+  .icon3d{
+    width:50px;
+    height:50px;
+  }
+  .connect-panel{
+    padding-left:16px;
+    padding-right:16px;
+  }
+}
+
+
+/* FINAL FIXED NAVIGATION */
+nav{
+  position:fixed !important;
+  top:0 !important;
+  left:50% !important;
+  transform:translateX(-50%) !important;
+  z-index:5000 !important;
+  width:min(var(--max),calc(100% - 32px)) !important;
+  margin:0 !important;
+}
+html{scroll-padding-top:74px;}
+
+@media(max-width:900px){
+  body{padding-top:70px;}
+  nav{
+    width:calc(100% - 14px) !important;
+    height:70px !important;
+  }
+  html{scroll-padding-top:70px;}
+}
+
+@media(max-width:520px){
+  body{padding-top:68px;}
+  nav{
+    width:calc(100% - 14px) !important;
+    height:68px !important;
+  }
+  html{scroll-padding-top:68px;}
+}
+
+/* =========================================================
+   FINAL MOBILE FIXES — layout only
+   Keeps all existing content/design unchanged.
+   ========================================================= */
+
+/* 1) GitHub "View project" links:
+      cancel the older absolute-position rule on phone cards. */
+@media (max-width:600px){
+  .notes-grid .project-card{
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .notes-grid .project-card > div:first-child{
+    min-width:0;
+  }
+
+  .notes-grid .project-card .project-link{
+    position:static !important;
+    right:auto !important;
+    bottom:auto !important;
+    left:auto !important;
+    display:flex !important;
+    width:100%;
+    max-width:100%;
+    align-items:center;
+    justify-content:flex-start;
+    margin-top:20px !important;
+    padding:11px 0 4px;
+    box-sizing:border-box;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    flex:none;
+  }
+
+  /* 2) The .timeline::before belongs to the personal timeline.
+        It must not leak into Build. Measure. Debug. */
+  #about .timeline{
+    position:relative;
+    margin-top:34px;
+    padding:0 !important;
+    border-top:1px solid var(--line);
+  }
+
+  #about .timeline::before{
+    display:none !important;
+    content:none !important;
+  }
+
+  #about .role{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+    min-width:0;
+  }
+
+  #about .role > div{
+    min-width:0;
+  }
+
+  #about .role h3{
+    font-size:clamp(24px,7.5vw,32px);
+    line-height:1.02;
+  }
+
+  #about .role p{
+    font-size:14px;
+    line-height:1.6;
+    overflow-wrap:anywhere;
+  }
+
+  /* 3) Footer bottom text:
+        stack instead of trying to share one narrow row. */
+  footer .footer-bottom{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-start;
+    gap:8px;
+    margin-top:42px;
+    padding-top:18px;
+    font-size:9px;
+    line-height:1.55;
+    white-space:normal;
+  }
+
+  footer .footer-bottom span{
+    display:block;
+    max-width:100%;
+    min-width:0;
+    overflow-wrap:anywhere;
+  }
+
+  /* 4) Contact form:
+        put the modal above the fixed navigation and keep the
+        close button inside the visible panel area. */
+  .connect-modal{
+    z-index:6000 !important;
+  }
+
+  .connect-backdrop{
+    z-index:0;
+  }
+
+  .connect-panel{
+    position:relative;
+    z-index:1;
+  }
+
+  .connect-close{
+    z-index:5;
+  }
+}
+
+/* Extra-small phones: give the modal a safe top clearance from
+   the fixed navigation while preserving internal scrolling. */
+@media (max-width:380px){
+  .notes-grid .project-card .project-link{
+    margin-top:18px !important;
+  }
+
+  footer .footer-bottom{
+    font-size:8.5px;
+  }
+
+  .connect-modal{
+    align-items:flex-start;
+    padding:76px 10px 10px;
+  }
+
+  .connect-panel{
+    width:100%;
+    max-height:calc(100dvh - 86px);
+    overflow:auto;
+  }
+}
+
+/* On phones above 380px, the panel is still centered but is always
+   above the fixed nav because the modal z-index is higher. */
+@media (min-width:381px) and (max-width:600px){
+  .connect-modal{
+    z-index:6000 !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL MODAL STACKING FIX
+   The fixed nav must never sit above the contact dialog.
+   No content/design changes.
+   ========================================================= */
+
+.connect-modal{
+  z-index:2147483000 !important;
+  isolation:isolate;
+}
+
+.connect-modal .connect-backdrop{
+  z-index:0;
+}
+
+.connect-modal .connect-panel{
+  position:relative;
+  z-index:1;
+}
+
+.connect-modal .connect-close{
+  position:absolute;
+  z-index:10;
+}
+
+/* While the contact form is open, deliberately place the navigation
+   underneath the modal. This is more reliable than relying only on
+   two competing z-index values because the nav uses backdrop-filter. */
+body.connect-locked nav{
+  z-index:1000 !important;
+}
+
+/* Mobile: keep the complete dialog below the top browser/navigation area
+   and make the panel itself the scrolling surface when needed. */
+@media (max-width:600px){
+  body.connect-locked nav{
+    z-index:1000 !important;
+  }
+
+  .connect-modal{
+    inset:0 !important;
+    padding:76px 10px 10px !important;
+    align-items:flex-start !important;
+    overflow:hidden;
+  }
+
+  .connect-panel{
+    width:min(100%,500px) !important;
+    max-height:calc(100dvh - 86px) !important;
+    margin:0 auto;
+    overflow:auto !important;
+  }
+}
+
+/* Small phones: slightly more breathing room below the fixed nav. */
+@media (max-width:380px){
+  .connect-modal{
+    padding:74px 8px 8px !important;
+  }
+
+  .connect-panel{
+    max-height:calc(100dvh - 82px) !important;
+  }
+}
+
+
+/* =========================================================
+   CLEAN SECTION OUTLINES
+   Removes only the outer page/section divider lines.
+   Cards, buttons, inputs and other component borders remain.
+   ========================================================= */
+.page{
+  border:none !important;
+}
+
+section{
+  border-top:none !important;
+}
+
+
+/* =========================================================
+   HERO FABRIC / GRID BREATHING EFFECT
+   Keeps the existing grid exactly the same, but lets it
+   softly appear and disappear in a continuous motion.
+   ========================================================= */
+.hero-grid{
+  opacity:.5;
+  animation:heroGridBreath 8s ease-in-out infinite;
+  will-change:opacity;
+}
+
+@keyframes heroGridBreath{
+  0%,100%{opacity:.14}
+  50%{opacity:.55}
+}
+
+</style>
+<!--
+  BRAND GIF:
+  Put your GIF beside index.html and name it "logo.gif".
+  The circular brand container is intentionally the same size as the S fallback.
+-->
+</head>
+
+<body>
+<div class="page">
+
+<nav>
+  <a class="brand" href="#top" aria-label="Back to top">
+    <img class="brand-gif" src="logo.png" alt="Siddarth logo"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+    <span class="brand-fallback"></span>
+  </a>
+  <div class="nav-center">
+    <a class="nav-pill active" href="#work">WORK</a>
+    <a class="nav-pill" href="#lab">LAB</a>
+    <a class="nav-pill" href="#timeline">TIMELINE</a>
+    <a class="nav-pill" href="#notes">NOTES</a>
+    <a class="nav-pill" href="#about">ABOUT</a>
+  </div>
+  <button class="menu" id="menuButton" type="button" aria-label="Open contact menu" aria-haspopup="dialog" aria-expanded="false" aria-controls="connectModal">Connect</button>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-grid"></div>
+  <div class="floating f1"></div><div class="floating f2"></div><div class="floating f3"></div>
+  <div class="floating f4"></div><div class="floating f5"></div>
+  <div class="hero-copy reveal scale-in">
+    <div class="eyebrow">EMBEDDED SYSTEMS / FIRMWARE</div>
+    <h1><span>Hi, I'm</span><span>Siddarth.<i style="display:inline !important; color:#f2762b !important; font-style:normal;">S</i></span></h1>
+    <div class="location">⌖ 📍Chennai, <b>INDIA</b> · BUILDING AT THE <b>HARDWARE/SOFTWARE</b> BOUNDARY</div>
+    <p class="sub">I build embedded systems that are measurable, debuggable and designed to behave reliably — from bare-metal firmware to interfaces, buses and hardware bring-up.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#work">View selected work ↗</a>
+      <a class="btn btn-resume" href="Siddarth_S_Embedded_Firmware_Fresher_Resume.pdf" target="_blank" rel="noopener noreferrer">View resume ↗</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="work">
+  <div class="container">
+    <div class="section-head reveal from-left">
+      <h2>Selected<br>work.</h2>
+      <p>Projects are presented as engineering evidence: architecture, firmware, hardware decisions, debugging and measurable outcomes — not just a list of technologies.</p>
+    </div>
+
+    <div class="project-grid">
+      <article class="project reveal rotate-in">
+        <div class="project-visual">
+          <div class="board"><div class="chip"></div><i class="trace t1"></i><i class="trace t2"></i><i class="trace t3"></i></div>
+        </div>
+        <div class="project-info">
+          <div class="eyebrow">01 / FIRMWARE</div>
+          <h3>Secure OTA Firmware</h3>
+          <p>Dual-slot firmware update flow with image validation, persistent metadata and rollback-oriented boot logic.</p>
+          <div class="project-meta"><span class="tag">ESP32</span><span class="tag">C</span><span class="tag">ESP-IDF</span><span class="tag">SHA-256</span></div>
+        </div>
+        <a class="project-link" href="https://github.com/SIDDUSPACE" target="_blank">GitHub ↗</a>
+      </article>
+
+      <article class="project reveal rotate-in delay-1">
+        <div class="project-visual">
+          <div class="scope">
+            <div class="scope-window">
+              <svg class="wave" viewBox="0 0 500 250" preserveAspectRatio="none">
+                <path d="M0 170 L40 170 L40 60 L90 60 L90 170 L140 170 L140 60 L190 60 L190 170 L240 170 L240 60 L290 60 L290 170 L340 170 L340 60 L390 60 L390 170 L440 170 L440 60 L500 60"
+                      fill="none" stroke="#111" stroke-width="4"/>
+                <path d="M0 205 L500 205" stroke="#c9cec9" stroke-width="1"/>
+                <path d="M0 115 L500 115" stroke="#c9cec9" stroke-width="1"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="eyebrow">02 / CONNECTIVITY</div>
+          <h3>BLE Indoor Localization</h3>
+          <p>Beacon scanning, RSSI filtering and position estimation with a focus on repeatable measurements and embedded constraints.</p>
+          <div class="project-meta"><span class="tag">ESP32</span><span class="tag">BLE</span><span class="tag">Python</span><span class="tag">RSSI</span></div>
+        </div>
+        <a class="project-link" href="https://github.com/SIDDUSPACE" target="_blank">GitHub ↗</a>
+      </article>
+
+      <article class="project reveal rotate-in delay-2">
+        <div class="project-visual">
+          <div class="logic">
+            <div class="logic-box">
+              <div class="logic-title">UART / 115200 8N1 · CAPTURE</div>
+              <div class="bits">
+                <i class="bit" style="height:55%"></i><i class="bit" style="height:30%"></i><i class="bit" style="height:78%"></i>
+                <i class="bit" style="height:42%"></i><i class="bit" style="height:92%"></i><i class="bit" style="height:66%"></i>
+                <i class="bit" style="height:36%"></i><i class="bit" style="height:84%"></i><i class="bit" style="height:52%"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="eyebrow">03 / DEBUGGING</div>
+          <h3>Cortex-M HardFault Analyzer</h3>
+          <p>Fault handler that captures stacked CPU state and fault registers to turn a crash into actionable debug evidence.</p>
+          <div class="project-meta"><span class="tag">STM32</span><span class="tag">C</span><span class="tag">GDB</span><span class="tag">JTAG/SWD</span></div>
+        </div>
+        <a class="project-link" href="https://github.com/SIDDUSPACE" target="_blank">GitHub ↗</a>
+      </article>
+
+      <article class="project reveal rotate-in delay-3">
+        <div class="project-visual">
+          <div class="kicad"><div class="kicad-grid"></div><i class="trace-line tl1"></i><i class="trace-line tl2"></i><i class="trace-line tl3"></i>
+            <i class="pad" style="left:16%;top:25%"></i><i class="pad" style="left:73%;top:31%"></i><i class="pad" style="left:31%;top:68%"></i><i class="pad" style="left:72%;top:69%"></i>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="eyebrow">04 / AUTOMOTIVE</div>
+          <h3>Automotive Black Box</h3>
+          <p>CAN-oriented event logging and diagnostic capture with attention to arbitration, message priority and timestamped evidence.</p>
+          <div class="project-meta"><span class="tag">CAN</span><span class="tag">STM32</span><span class="tag">C</span><span class="tag">Flash</span></div>
+        </div>
+        <a class="project-link" href="https://github.com/SIDDUSPACE" target="_blank">GitHub ↗</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="container">
+    <div class="section-head reveal from-right">
+      <h2>Show the<br>bench.</h2>
+      <p>Replace or extend these visuals with your actual board photos, KiCad layouts, oscilloscope captures and logic-analyzer screenshots. Real evidence beats decorative graphics.</p>
+    </div>
+
+    <div class="evidence-grid">
+      <article class="evidence reveal from-left">
+        <div class="evidence-img">
+          <span class="evidence-label">BOARD / MCU</span>
+          <div class="board" style="width:68%;left:16%;top:17%;height:65%"><div class="chip"></div><i class="trace t1"></i><i class="trace t2"></i></div>
+        </div>
+        <div class="evidence-body"><h3>STM32 / ESP32 boards</h3><p>Show the actual board, model and what the target was used to validate.</p></div>
+      </article>
+
+      <article class="evidence reveal scale-in delay-1">
+        <div class="evidence-img">
+          <span class="evidence-label">SCOPE / WAVEFORM</span>
+          <div class="scope">
+            <div class="scope-window">
+              <svg class="wave" viewBox="0 0 500 250" preserveAspectRatio="none">
+                <path d="M0 165 C40 165 35 70 70 70 S100 165 135 165 S165 70 200 70 S230 165 270 165 S300 70 335 70 S365 165 400 165 S430 70 465 70 S485 120 500 120" fill="none" stroke="#111" stroke-width="5"/>
+                <path d="M0 205H500M0 120H500" stroke="#d0d5d1"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="evidence-body"><h3>Oscilloscope measurements</h3><p>Annotate frequency, voltage, timing, rise/fall time or the fault you actually found.</p></div>
+      </article>
+
+      <article class="evidence reveal from-right delay-2">
+        <div class="evidence-img">
+          <span class="evidence-label">LOGIC ANALYZER</span>
+          <div class="logic"><div class="logic-box"><div class="logic-title">SPI / CS / CLK / MOSI / MISO</div><div class="bits"><i class="bit" style="height:85%"></i><i class="bit" style="height:45%"></i><i class="bit" style="height:72%"></i><i class="bit" style="height:34%"></i><i class="bit" style="height:92%"></i><i class="bit" style="height:57%"></i><i class="bit" style="height:78%"></i></div></div></div>
+        </div>
+        <div class="evidence-body"><h3>Logic analyzer captures</h3><p>Use UART, SPI, I²C or CAN traces to prove the electrical and protocol side of debugging.</p></div>
+      </article>
+
+      <article class="evidence reveal from-left">
+        <div class="evidence-img">
+          <span class="evidence-label">PCB / KICAD</span>
+          <div class="kicad"><div class="kicad-grid"></div><i class="trace-line tl1"></i><i class="trace-line tl2"></i><i class="trace-line tl3"></i><i class="pad" style="left:17%;top:28%"></i><i class="pad" style="left:72%;top:32%"></i><i class="pad" style="left:31%;top:67%"></i></div>
+        </div>
+        <div class="evidence-body"><h3>KiCad PCB</h3><p>Show schematic, PCB layout and the engineering decisions behind power or interface circuitry.</p></div>
+      </article>
+
+      <article class="evidence reveal scale-in delay-1">
+        <div class="evidence-img">
+          <span class="evidence-label">DEBUG / SWD</span>
+          <div style="position:absolute;inset:0;display:grid;place-items:center">
+            <div style="width:76%;height:65%;background:#fff;border:1px solid #cfd4d0;border-radius:20px;box-shadow:15px 18px 0 #dfe3df;padding:25px">
+              <div class="mono" style="font-size:11px">gdb → target remote</div>
+              <div class="mono" style="font-size:11px;margin-top:18px;color:#69726d">break main</div>
+              <div class="mono" style="font-size:11px;margin-top:10px;color:#111">&gt; halted at 0x080014ac</div>
+              <div style="margin-top:20px;height:3px;background:#111;width:78%"></div>
+              <div style="margin-top:10px;height:3px;background:#cbd1cc;width:58%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="evidence-body"><h3>Debugging setup</h3><p>Document the debugger, target board, terminal and measurement equipment used to reproduce the issue.</p></div>
+      </article>
+
+      <article class="evidence reveal from-right delay-2">
+        <div class="evidence-img">
+          <span class="evidence-label">BRING-UP</span>
+          <div style="position:absolute;left:13%;right:13%;top:18%;height:65%;display:flex;align-items:center;justify-content:space-between">
+            <div class="mono" style="font-size:11px">POWER</div><div>→</div><div class="mono" style="font-size:11px">CLOCK</div><div>→</div><div class="mono" style="font-size:11px">GPIO</div><div>→</div><div class="mono" style="font-size:11px">UART</div>
+          </div>
+        </div>
+        <div class="evidence-body"><h3>Bring-up evidence</h3><p>Show the sequence from power-on to clock, GPIO, UART, peripheral and application validation.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<section id="timeline">
+  <div class="container">
+    <div class="section-head reveal from-left">
+      <h2>My<br>timeline.</h2>
+      <p>A progression from electronics fundamentals to embedded firmware, practical debugging and complete hardware–software systems.</p>
+    </div>
+
+    <div class="timeline">
+      <article class="timeline-item reveal from-left">
+        <div class="timeline-marker"><span></span></div>
+        <div class="timeline-meta">01</div>
+        <div class="timeline-content">
+          <h3>Electronics foundation</h3>
+          <p>Built my foundation around circuits, signals, microcontrollers and understanding how physical hardware becomes a measurable system.</p>
+          <div class="timeline-tags"><span>Electronics</span><span>Signals</span><span>Microcontrollers</span></div>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal from-right">
+        <div class="timeline-marker"><span></span></div>
+        <div class="timeline-meta">02</div>
+        <div class="timeline-content">
+          <h3>Embedded firmware</h3>
+          <p>Moved deeper into bare-metal development, peripherals, buses, interrupts, memory and deterministic firmware behaviour.</p>
+          <div class="timeline-tags"><span>Bare-metal</span><span>Firmware</span><span>Peripherals</span></div>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal from-left">
+        <div class="timeline-marker"><span></span></div>
+        <div class="timeline-meta">03</div>
+        <div class="timeline-content">
+          <h3>Hardware debugging</h3>
+          <p>Expanded from writing code to measuring real behaviour with oscilloscopes, logic analyzers, UART, JTAG and GDB.</p>
+          <div class="timeline-tags"><span>JTAG</span><span>GDB</span><span>UART</span><span>Logic Analyzer</span></div>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal from-right">
+        <div class="timeline-marker"><span></span></div>
+        <div class="timeline-meta">04</div>
+        <div class="timeline-content">
+          <h3>Complete embedded systems</h3>
+          <p>Started building larger systems spanning OTA updates, crash analysis, device authentication, BLE and embedded interfaces.</p>
+          <div class="timeline-tags"><span>OTA</span><span>Security</span><span>BLE</span><span>System Design</span></div>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal from-left">
+        <div class="timeline-marker current"><span></span></div>
+        <div class="timeline-meta">NOW</div>
+        <div class="timeline-content">
+          <h3>Hardware / software boundary</h3>
+          <p>Focused on embedded systems and firmware that can be measured, reproduced, debugged and trusted on real hardware.</p>
+          <div class="timeline-tags"><span>Embedded Systems</span><span>Firmware</span><span>Bring-up</span><span>Research</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="container">
+    <div class="section-head reveal from-left">
+      <h2>What I<br>work with.</h2>
+      <p>Structured by engineering function so a recruiter can understand capability without decoding a technology shopping list.</p>
+    </div>
+
+    <div class="stack-grid">
+      <article class="stack-card reveal scale-in">
+        <div class="eyebrow">01</div><h3>Languages</h3>
+        <div class="icon-row">
+          <div class="icon3d"><strong>C</strong><small>CORE</small></div>
+          <div class="icon3d"><strong>C++</strong><small>OOP</small></div>
+          <div class="icon3d"><strong>Py</strong><small>TOOLS</small></div>
+          <div class="icon3d"><strong>sh</strong><small>CLI</small></div>
+        </div>
+      </article>
+
+      <article class="stack-card reveal scale-in delay-1">
+        <div class="eyebrow">02</div><h3>Microcontrollers</h3>
+        <div class="icon-row">
+          <div class="icon3d"><strong>STM</strong><small>ARM</small></div>
+          <div class="icon3d"><strong>ESP</strong><small>ESP32</small></div>
+          <div class="icon3d"><strong>M</strong><small>CORTEX</small></div>
+        </div>
+      </article>
+
+      <article class="stack-card reveal scale-in delay-2">
+        <div class="eyebrow">03</div><h3>Embedded</h3>
+        <div class="icon-row">
+          <div class="icon3d"><strong>RT</strong><small>RTOS</small></div>
+          <div class="icon3d"><strong>IRQ</strong><small>INT</small></div>
+          <div class="icon3d"><strong>DMA</strong><small>DATA</small></div>
+          <div class="icon3d"><strong>TMR</strong><small>TIMER</small></div>
+        </div>
+      </article>
+
+      <article class="stack-card reveal from-left">
+        <div class="eyebrow">04</div><h3>Communication</h3>
+        <div class="icon-row">
+          <div class="icon3d"><strong>↔</strong><small>UART</small></div>
+          <div class="icon3d"><strong>SPI</strong><small>BUS</small></div>
+          <div class="icon3d"><strong>I²C</strong><small>BUS</small></div>
+          <div class="icon3d"><strong>CAN</strong><small>AUTO</small></div>
+          <div class="icon3d"><strong>BLE</strong><small>RADIO</small></div>
+          <div class="icon3d"><strong>MQ</strong><small>MQTT</small></div>
+        </div>
+      </article>
+
+      <article class="stack-card reveal scale-in delay-1">
+        <div class="eyebrow">05</div><h3>Debugging</h3>
+        <div class="icon-row">
+          <div class="icon3d"><strong>GDB</strong><small>DEBUG</small></div>
+          <div class="icon3d"><strong>JTAG</strong><small>SWD</small></div>
+          <div class="icon3d"><strong>LA</strong><small>ANALYZER</small></div>
+          <div class="icon3d"><strong>OSC</strong><small>SCOPE</small></div>
+        </div>
+      </article>
+
+      <article class="stack-card reveal from-right delay-2">
+        <div class="eyebrow">06</div><h3>Tools & OS</h3>
+        <div class="icon-row">
+          <div class="icon3d"><strong>Cube</strong><small>STM32</small></div>
+          <div class="icon3d"><strong>K</strong><small>KEIL</small></div>
+          <div class="icon3d"><strong>VS</strong><small>CODE</small></div>
+          <div class="icon3d"><strong>Git</strong><small>VCS</small></div>
+          <div class="icon3d"><strong>RK</strong><small>RENODE</small></div>
+          <div class="icon3d"><strong>Ki</strong><small>KICAD</small></div>
+          <div class="icon3d"><strong>🐧</strong><small>LINUX</small></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="notes">
+  <div class="container">
+    <div class="section-head reveal from-right">
+      <h2>Things I<br>have built.</h2>
+      <p>Selected projects from my GitHub. Each card goes directly to the repository, where you can inspect the source, architecture, documentation and implementation.</p>
+    </div>
+
+    <div class="notes-grid project-grid">
+      <article class="note project-card reveal from-left">
+        <div>
+          <div class="project-card-top"><div class="eyebrow">01 / DEBUGGING</div><span class="repo-mark">C</span></div>
+          <h3>Firmware Crash Analyzer</h3>
+          <p>Silicon-grade HardFault analysis for ARM Cortex-M with fault capture, register inspection, persistent crash records and post-mortem symbolication.</p>
+          <div class="project-tags"><span>ARM Cortex-M</span><span>Bare-Metal</span><span>Renode</span></div>
+        </div>
+        <a class="project-link" href="https://github.com/SIDDUSPACE/firmware-crash-analyzer" target="_blank" rel="noopener noreferrer">View project ↗</a>
+      </article>
+
+      <article class="note project-card reveal scale-in delay-1">
+        <div>
+          <div class="project-card-top"><div class="eyebrow">02 / BOOTLOADER</div><span class="repo-mark">C</span></div>
+          <h3>Dual-Slot OTA Bootloader</h3>
+          <p>Bare-metal x86 bootloader demonstrating a two-stage boot flow, dual firmware slots, update-state handling and automatic rollback.</p>
+          <div class="project-tags"><span>Bootloader</span><span>OTA</span><span>QEMU</span></div>
+        </div>
+        <a class="project-link" href="https://github.com/SIDDUSPACE/dual-slot-ota-bootloader" target="_blank" rel="noopener noreferrer">View project ↗</a>
+      </article>
+
+      <article class="note project-card reveal from-right delay-2">
+        <div>
+          <div class="project-card-top"><div class="eyebrow">03 / SECURITY</div><span class="repo-mark">C</span></div>
+          <h3>ESP32 Secure OTA</h3>
+          <p>Secure firmware update system focused on signed firmware, anti-rollback protection and a cryptographic boot chain.</p>
+          <div class="project-tags"><span>ESP32</span><span>ECDSA</span><span>Secure OTA</span></div>
+        </div>
+        <a class="project-link" href="https://github.com/SIDDUSPACE/esp32-secure-ota" target="_blank" rel="noopener noreferrer">View project ↗</a>
+      </article>
+
+      <article class="note project-card reveal from-left">
+        <div>
+          <div class="project-card-top"><div class="eyebrow">04 / IOT SECURITY</div><span class="repo-mark">C</span></div>
+          <h3>Secure IoT Device Authentication</h3>
+          <p>ESP32 + QEMU security project covering secure boot, firmware integrity verification, mutual TLS authentication and device revocation.</p>
+          <div class="project-tags"><span>ESP32</span><span>mTLS</span><span>QEMU</span></div>
+        </div>
+        <a class="project-link" href="https://github.com/SIDDUSPACE/Secure-IoT-Firmware-Device-Auth" target="_blank" rel="noopener noreferrer">View project ↗</a>
+      </article>
+
+      <article class="note project-card reveal scale-in delay-1">
+        <div>
+          <div class="project-card-top"><div class="eyebrow">05 / WIRELESS</div><span class="repo-mark">BLE</span></div>
+          <h3>BLE Indoor Localization</h3>
+          <p>RSSI-based localization using beacon scanning, trilateration and filtering techniques for indoor zone detection.</p>
+          <div class="project-tags"><span>BLE</span><span>RSSI</span><span>Kalman Filter</span></div>
+        </div>
+        <a class="project-link" href="https://github.com/SIDDUSPACE/ble-indoor-localization" target="_blank" rel="noopener noreferrer">View project ↗</a>
+      </article>
+
+      <article class="note project-card reveal from-right delay-2">
+        <div>
+          <div class="project-card-top"><div class="eyebrow">06 / STM32</div><span class="repo-mark">C</span></div>
+          <h3>STM32 Bare-Metal CLI</h3>
+          <p>Register-level STM32 firmware with a UART command interface for GPIO, timers and ADC control, plus custom memory-layout work.</p>
+          <div class="project-tags"><span>STM32</span><span>UART</span><span>Bare-Metal</span></div>
+        </div>
+        <a class="project-link" href="https://github.com/SIDDUSPACE/stm32-bare-metal-cli" target="_blank" rel="noopener noreferrer">View project ↗</a>
+      </article>
+    </div>
+
+    <div class="project-profile-link reveal">
+      <a href="https://github.com/SIDDUSPACE" target="_blank" rel="noopener noreferrer">View all repositories on GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head reveal from-left">
+      <h2>Build. Measure.<br>Debug.</h2>
+      <p>The portfolio should make one thing obvious: you don't just know the names of embedded technologies — you can use instruments, reason from evidence and turn failures into working systems.</p>
+    </div>
+
+    <div class="timeline reveal scale-in">
+      <div class="role">
+        <div class="eyebrow">NOW</div>
+        <div><h3>Embedded / Firmware Engineering</h3><p>Building projects around microcontrollers, communication interfaces, debugging and hardware-software integration.</p></div>
+        <div><p>Focus: STM32 · ESP32 · C/C++ · RTOS · UART · SPI · I²C · CAN · GDB · JTAG/SWD</p></div>
+      </div>
+      <div class="role">
+        <div class="eyebrow">NEXT</div>
+        <div><h3>Deeper Systems Work</h3><p>Strengthening low-level architecture, RTOS synchronization, bootloaders, drivers and board bring-up.</p></div>
+        <div><p>Goal: produce more measured evidence and complete engineering case studies.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid reveal">
+      <div><div class="eyebrow" style="color:#8d9691">LET'S BUILD</div><h2 style="margin-top:18px">Have a hardware<br>problem to solve?</h2></div>
+      <div><p>Open to embedded systems, firmware, electronics and research-oriented opportunities.</p>
+        <div class="footer-links social-links" aria-label="Social links">
+          <a class="social-icon" href="mailto:siddarth.career@gmail.com" aria-label="Email" title="Email">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6.5h17v11h-17z"/><path d="m4 7 8 6 8-6"/></svg>
+          </a>
+          <a class="social-icon" href="https://github.com/SIDDUSPACE" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.2-4-2-5.5-2M14.5 22v-3.2c0-1 .1-1.7-.5-2.3 3.3-.4 6.8-1.6 6.8-7a5.5 5.5 0 0 0-1.5-3.8 5 5 0 0 0-.1-3.7s-1.2-.4-4 1.5a13.7 13.7 0 0 0-7.2 0C5.2 1.6 4 2 4 2a5 5 0 0 0-.1 3.7 5.5 5.5 0 0 0-1.5 3.8c0 5.4 3.5 6.6 6.8 7-.6.5-.6 1.2-.5 2.3V22"/></svg>
+          </a>
+          <a class="social-icon" href="https://www.linkedin.com/in/siddarth-s-embedded" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8v11"/><path d="M5 5.2v.1"/><path d="M10 19V8"/><path d="M10 12.7c.7-2.2 2.1-3.2 4.2-3.2 2.8 0 4.8 1.8 4.8 5.5V19"/><path d="M19 19v-4"/></svg>
+          </a>
+          <a class="social-icon" href="Siddarth_S_Embedded_Firmware_Fresher_Resume.pdf" aria-label="Resume" title="Resume">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9l3 3V20.5H6z"/><path d="M15 3.5v4h3"/><path d="M9 12h6M9 15h6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 SIDDARTH, 📍Chennai, TN, India.</span><span>EMBEDDED SYSTEMS / FIRMWARE</span></div>
+  </div>
+</footer>
+
+</div>
+
+<div id="scrollGhosts"></div>
+
+<!-- Fixed section progress rail.
+     The rail stays in the same bottom-right area where the old volume HUD lived.
+     Its thumb moves from top -> bottom as the page progresses. -->
+<div id="sectionRail" aria-hidden="true">
+  <div class="rail-track"></div>
+  <div class="rail-fill"></div>
+  <div class="rail-thumb"></div>
+  <div class="rail-section">
+    <span class="rail-current">01</span>
+    <span class="rail-slash">/</span>
+    <span class="rail-total">07</span>
+  </div>
+  <div class="rail-direction">↓</div>
+</div>
+
+<div class="connect-modal" id="connectModal" aria-hidden="true">
+  <div class="connect-backdrop" data-close-connect></div>
+  <section class="connect-panel" role="dialog" aria-modal="true"
+           aria-labelledby="connectTitle">
+    <button class="connect-close" id="connectClose" type="button"
+            aria-label="Close contact form">×</button>
+
+    <div class="connect-kicker">CONNECT TO ME</div>
+    <h2 id="connectTitle">Have something to build?</h2>
+    <p class="connect-intro">
+      Send me a message about an embedded project, firmware problem,
+      collaboration, opportunity, or just an interesting idea.
+    </p>
+
+    <form class="connect-form" id="connectForm"
+          action="https://formspree.io/f/xeaqzdnv"
+          method="POST">
+      <div class="connect-grid">
+        <label>
+          <span>Your name</span>
+          <input type="text" name="name" autocomplete="name" required placeholder="Siddarth">
+        </label>
+        <label>
+          <span>Your email</span>
+          <input type="email" name="email" autocomplete="email" required placeholder="you@example.com">
+        </label>
+      </div>
+
+      <label>
+        <span>Message</span>
+        <textarea name="message" rows="6" required
+                  placeholder="Tell me what you're working on..."></textarea>
+      </label>
+
+      <input type="hidden" name="_subject" value="Portfolio contact — new message from Siddarth's website">
+      <input type="hidden" name="_replyto" value="">
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="connect-honeypot">
+
+      <div class="connect-form-bottom">
+        <span class="connect-note"><i>I</i> <b><i>CONNECT</i></b> to every users.</span>
+        <button class="connect-submit" type="submit">Send message ↗</button>
+      </div>
+
+      <div class="connect-status" id="connectStatus" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+</div>
+
+<script>
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Section entrance animations */
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.12, rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+/* Active nav */
+const pills=[...document.querySelectorAll('.nav-pill')];
+const sections=['work','lab','timeline','stack','notes','about'].map(id=>document.getElementById(id));
+const navObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      pills.forEach(p=>p.classList.remove('active'));
+      const p=document.querySelector(`.nav-pill[href="#${entry.target.id}"]`);
+      if(p)p.classList.add('active');
+    }
+  })
+},{rootMargin:'-35% 0px -55% 0px',threshold:0});
+sections.forEach(s=>navObserver.observe(s));
+
+/* Scroll direction + section progress rail + subtle transient graphics */
+let lastY=scrollY;
+let lastT=performance.now();
+let scrollTimer;
+let scrollVelocity=0;
+
+const rail=document.getElementById('sectionRail');
+const railFill=document.querySelector('.rail-fill');
+const railThumb=document.querySelector('.rail-thumb');
+const railSection=document.querySelector('.rail-section');
+const currentEl=document.querySelector('.rail-current');
+const directionEl=document.querySelector('.rail-direction');
+const ghosts=document.getElementById('scrollGhosts');
+
+
+const progressSections=[
+  {id:'top', label:'01'},
+  {id:'work', label:'02'},
+  {id:'lab', label:'03'},
+  {id:'timeline', label:'04'},
+  {id:'stack', label:'05'},
+  {id:'notes', label:'06'},
+  {id:'about', label:'07'}
+];
+
+document.querySelector('.rail-total').textContent=String(progressSections.length).padStart(2,'0');
+
+function pageProgress(){
+  const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+  return Math.max(0,Math.min(1,scrollY/max));
+}
+
+function currentSectionIndex(){
+  const marker=scrollY + window.innerHeight*.38;
+  let index=0;
+  progressSections.forEach((item,i)=>{
+    const el=document.getElementById(item.id);
+    if(el && el.offsetTop <= marker) index=i;
+  });
+  return index;
+}
+
+function updateRail(){
+  const progress=pageProgress();
+  const index=currentSectionIndex();
+  const railHeight=230;
+  const thumbTop=(railHeight-9)*progress;
+  const sectionTop=Math.max(0,Math.min(railHeight-12,thumbTop-5));
+
+  railFill.style.height=(progress*100)+'%';
+  railThumb.style.top=thumbTop+'px';
+  railSection.style.top=sectionTop+'px';
+  currentEl.textContent=String(index+1).padStart(2,'0');
+}
+
+function spawnGhost(direction,power){
+  const g=document.createElement('i');
+  g.className='ghost';
+  const side=Math.random()>.5;
+  g.style.left=(side?Math.random()*42+4:Math.random()*42+54)+'vw';
+  g.style.top=(Math.random()*78+10)+'vh';
+
+  const s=Math.max(.55,Math.min(1.8,power));
+  g.style.width=(7+s*3)+'px';
+  g.style.height=(7+s*3)+'px';
+  g.style.animationDuration=(.55+Math.random()*.5)+'s';
+
+  /* Upward movement is kept subtle in both directions so the graphics
+     feel like a UI response rather than a distraction. */
+  g.style.animationName=direction>0?'ghostUp':'ghostUp';
+  ghosts.appendChild(g);
+  setTimeout(()=>g.remove(),1200);
+}
+
+function scrollSignal(now){
+  const y=scrollY;
+  const dt=Math.max(8,now-lastT);
+  const dy=y-lastY;
+
+  scrollVelocity=Math.abs(dy)/dt*16;
+
+  if(Math.abs(dy)>1){
+    rail.classList.add('scrolling');
+    directionEl.textContent=dy>0?'↓':'↑';
+
+    updateRail();
+
+    if(!reduceMotion && scrollVelocity>.8 && Math.random()<.24){
+      spawnGhost(dy>0?1:-1,scrollVelocity);
+    }
+
+    clearTimeout(scrollTimer);
+    scrollTimer=setTimeout(()=>rail.classList.remove('scrolling'),420);
+  }
+
+  lastY=y;
+  lastT=now;
+  requestAnimationFrame(scrollSignal);
+}
+
+updateRail();
+requestAnimationFrame(scrollSignal);
+
+addEventListener('resize',updateRail,{passive:true});
+
+/* Tiny parallax for hero shapes */
+if(!reduceMotion){
+  addEventListener('scroll',()=>{
+    const y=scrollY;
+    document.querySelectorAll('.floating').forEach((el,i)=>{
+      el.style.translate=`0 ${y*(.025+(i%3)*.008)}px`;
+    });
+  },{passive:true});
+}
+
+/* Connect-to-me menu */
+function initConnectMenu(){
+  const connectModal = document.getElementById('connectModal');
+  const connectClose = document.getElementById('connectClose');
+  const connectForm = document.getElementById('connectForm');
+  const connectStatus = document.getElementById('connectStatus');
+  const menuButton = document.getElementById('menuButton');
+
+  if(!connectModal || !menuButton) return;
+
+  function openConnect(){
+    connectModal.classList.add('is-open');
+    connectModal.setAttribute('aria-hidden','false');
+    menuButton.setAttribute('aria-expanded','true');
+    document.body.classList.add('connect-locked');
+    setTimeout(()=>{
+      connectForm?.querySelector('input[name="name"]')?.focus();
+    },180);
+  }
+
+  function closeConnect(){
+    connectModal.classList.remove('is-open');
+    connectModal.setAttribute('aria-hidden','true');
+    menuButton.setAttribute('aria-expanded','false');
+    document.body.classList.remove('connect-locked');
+  }
+
+  menuButton.addEventListener('click',(event)=>{
+    event.preventDefault();
+    event.stopPropagation();
+    if(connectModal.classList.contains('is-open')) closeConnect();
+    else openConnect();
+  });
+
+  connectClose?.addEventListener('click',closeConnect);
+  connectModal.querySelector('[data-close-connect]')?.addEventListener('click',closeConnect);
+
+  document.addEventListener('keydown',(event)=>{
+    if(event.key==='Escape' && connectModal.classList.contains('is-open')){
+      closeConnect();
+    }
+  });
+
+  connectForm?.addEventListener('submit',async (event)=>{
+    event.preventDefault();
+
+    if(connectForm.action.includes('YOUR_FORMSPREE_ID')){
+      connectStatus.textContent='Almost ready — connect your Formspree endpoint in index.html.';
+      return;
+    }
+
+    const submit=connectForm.querySelector('.connect-submit');
+    if(!submit) return;
+
+    submit.disabled=true;
+    submit.textContent='Sending…';
+    connectStatus.textContent='';
+
+    try{
+      const data=new FormData(connectForm);
+
+      /* Silent honeypot rejection for bots. */
+      if(data.get('_gotcha')){
+        submit.disabled=false;
+        submit.textContent='Send message ↗';
+        return;
+      }
+
+      data.set('_replyto',String(data.get('email')||''));
+
+      const response=await fetch(connectForm.action,{
+        method:'POST',
+        body:data,
+        headers:{'Accept':'application/json'}
+      });
+
+      if(response.ok){
+        connectStatus.textContent='Message sent successfully. Thanks — I’ll get back to you.';
+        connectForm.reset();
+        setTimeout(closeConnect,1800);
+      }else{
+        let detail='';
+        try{
+          const result=await response.json();
+          if(result?.errors?.length){
+            detail=' '+result.errors.map(item=>item.message).join(' ');
+          }
+        }catch(error){}
+        connectStatus.textContent='Could not send the message.'+detail+' Please try again.';
+      }
+    }catch(error){
+      connectStatus.textContent='Network error. Please try again or use the email button in the footer.';
+    }finally{
+      submit.disabled=false;
+      submit.textContent='Send message ↗';
+    }
+  });
+}
+
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',initConnectMenu);
+}else{
+  initConnectMenu();
+}
+
+</script>
+
+<!-- Connect-to-me modal -->
+
+
+</body>
+</html>
